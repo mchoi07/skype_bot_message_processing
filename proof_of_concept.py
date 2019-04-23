@@ -6,14 +6,6 @@ import random
 sk = Skype(credentials.username, credentials.password)
 s3_client = boto3.client('s3')
 
-
-# s3 = boto3.resource('s3')
-# BUCKET = "test"
-#
-# s3.Bucket(BUCKET).upload_file("your/local/file", "dump/file")
-
-
-
 class SkypePing(SkypeEventLoop):
     def __init__(self):
         super(SkypePing, self).__init__(credentials.username, credentials.password)
@@ -34,34 +26,3 @@ class SkypePing(SkypeEventLoop):
 
 lp = SkypePing()
 lp.loop()
-
-
-
-
-
-
-
-
-
-
-# sk.user # you
-# sk.contacts # your contacts
-# sk.chats # your conversations
-#
-#ch = sk.chats.create(["joe.4", "daisy.5"]) # new group conversation
-#ch = sk.contacts["joe.4"].chat # 1-to-1 conversation
-
-# ch = sk.contacts["shinray1"].chat
-# print(ch)
-# ch.sendMsg(content) # plain-text message
-# ch.sendFile(open("song.mp3", "rb"), "song.mp3") # file upload
-# ch.sendContact(sk.contacts["daisy.5"]) # contact sharing
-
-# msgs = ch.getMsgs() # retrieve recent messages
-
-# print(msgs[1])
-          # and not event.msg.userId == self.userId:
-          # and "ping" in event.msg.content:
-            # print(msgs[0].content)
-            # print(msgs[1].content)
-          #   event.msg.chat.sendMsg("Pong!")
