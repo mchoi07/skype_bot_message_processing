@@ -2,6 +2,8 @@ from skpy import Skype, SkypeEventLoop, SkypeNewMessageEvent
 import boto3
 import credentials
 import random
+import subprocess
+import time
 
 sk = Skype(credentials.username, credentials.password)
 s3_client = boto3.client('s3')
@@ -14,11 +16,13 @@ class SkypePing(SkypeEventLoop):
           s3 = boto3.client('s3')
           f1 = open('s3.txt', 'a')
           f2 = open('s3.txt', 'r')
-          print(event.msg.content)
+          print(event.msg)
           f1.write(str(event.msg.content) + "\n")
           f2.seek(0)
           if (len(f2.readlines())) > 5:
+              file_name = "file{}".format(format(time.time()))
               s3_client.upload_file("s3.txt", "skype-bucket-01", "dump/file {}".format(random.randint(0,1000)))
+              subprocess.call(["hdfs", "dfs", "-put", file_name])
               open("s3.txt", "w") # erases the contents of the file
               print('writing to s3')
 
