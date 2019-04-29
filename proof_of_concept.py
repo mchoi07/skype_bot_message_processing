@@ -18,6 +18,14 @@ class SkypePing(SkypeEventLoop):
 
           f1 = open('data.tsv', 'a')
           content_payload = re.sub('\s+', " ", str(event.msg.content))
+
+          chat_name_array = str(event.msg.chatId).split(":")
+          if chat_name_array[0] == '19':
+              chat_name = str(sk.chats[str(event.msg.chatId)].topic)
+          else:
+              # chat_name = str(sk.chats[str(event.msg.chatId)].userId) # based on the user id
+              chat_name = str(sk.chats[str(event.msg.chatId)].user.name) # need to format the username in case of unusual characters
+
           f1.write(
             str(event.msg.id) + "\t" +
             str(event.msg.type) + "\t" +
@@ -25,6 +33,7 @@ class SkypePing(SkypeEventLoop):
             str(event.msg.clientId) + "\t" +
             str(event.msg.userId) + "\t" +
             str(event.msg.chatId) + "\t" +
+            chat_name + "\t" +
             content_payload + "\t" +
             "\n"
             )
@@ -44,3 +53,6 @@ class SkypePing(SkypeEventLoop):
 
 lp = SkypePing()
 lp.loop()
+
+# Hive create table command:
+# create table skype_data (id string, type string, time string, clientId string, userId string, chatId string, chatName string, content string) row format delimited fields terminated by '\t' lines terminated by '\n';
