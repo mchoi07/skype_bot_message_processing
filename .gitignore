@@ -1,5 +1,6 @@
 __pycache__/
 frank_contributions/
+removed/
 credentials.py
 s3.txt
 chat_id.py
