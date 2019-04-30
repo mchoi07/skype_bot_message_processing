@@ -1,3 +1,10 @@
 __pycache__/
+frank_contributions/
 credentials.py
 s3.txt
+chat_id.py
+data.tsv
+ooze.sh
+saved_time
+timestamp.py
+wxml_backup
