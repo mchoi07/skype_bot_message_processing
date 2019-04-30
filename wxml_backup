@@ -1,0 +1,39 @@
+<!-- <command>list-tables --connect jdbc:mysql://localhost/skype_bot --username root --password hadoop</command> -->
+<!-- <param>OUTPUT=/user/maria_dev/skype_bot_output</param> -->
+
+<!-- <name>mapred.input.dir</name>
+<value>/skype_bot_data</value>
+<name>mapred.output.dir</name>
+<value>/skype_bot_output</value> -->
+
+
+//this code actually works
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workflow-app xmlns="uri:oozie:workflow:0.2" name="skype_bot_task">
+
+  <start to="batch-node" />
+
+    <action name="batch-node">
+      <sqoop xmlns="uri:oozie:sqoop-action:0.2">
+        <job-tracker>${jobTracker}</job-tracker>
+        <name-node>${nameNode}</name-node>
+        <configuration>
+          <property>
+            <name>mapred.job.queue.name</name>
+            <value>${queueName}</value>
+          </property>
+        </configuration>
+        <command>version</command>
+      </sqoop>
+      <ok to="end" />
+      <error to="fail" />
+    </action>
+
+  <kill name="fail">
+    <message>Oozie task failed</message>
+  </kill>
+
+  <end name="end" />
+
+</workflow-app>

@@ -34,7 +34,7 @@ class SkypePing(SkypeEventLoop):
             str(event.msg.userId) + "\t" +
             str(event.msg.chatId) + "\t" +
             chat_name + "\t" +
-            content_payload + "\t" +
+            content_payload +
             "\n"
             )
 
