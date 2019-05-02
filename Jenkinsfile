@@ -7,8 +7,8 @@ pipeline {
   stages {
     stage('Stage 1') {
       steps {
-        echo 'compiling skype bot'
-        sh 'python -m py_compile skype_bot.py'
+        echo 'python test'
+        sh 'python test.py'
       }
     }
   }
