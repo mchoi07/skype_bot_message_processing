@@ -4,7 +4,7 @@ pipeline {
     stage('Stage 1') {
       steps {
         echo 'compiling skype bot'
-        sh 'python -V'
+        sh 'java -version'
       }
     }
   }
