@@ -14,7 +14,7 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
-dag = DAG('skype_bot_2', default_args=default_args, schedule_interval=timedelta(days=1))
+dag = DAG('skype_bot_2', default_args=default_args, schedule_interval=timedelta(seconds=5))
 
 t1 = BashOperator(
     task_id='run_test',
