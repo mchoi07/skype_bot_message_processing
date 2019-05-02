@@ -43,7 +43,7 @@ class SkypePing(SkypeEventLoop):
 
           if (len(f2.readlines())) > 1:
               production_file_name = "file{}".format(format(time.time())) + ".tsv"
-              s3_client.upload_file('data.tsv', "skype-bucket-01", production_file_name)
+              s3_client.upload_file('data.tsv', "skype-bucket-02", production_file_name, ExtraArgs={'ACL':'bucket-owner-full-control'})
               subprocess.call(["hdfs", "dfs", "-put", 'data.tsv', 'skype_bot_data/' + production_file_name])
               open("data.tsv", "w") # erases the contents of the file
               print('writing to s3')

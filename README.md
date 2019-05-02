@@ -2,6 +2,11 @@
 
 Abstract: Getting message from Skpye account and process it to S3 and HDFS in realtime, and set the batch job for any query or processing for every 6 hr - data in HDFS to Hive and data in S3 to another S3 or RDS in AWS
 
+
+Update 5/2
+* Airflow fully configured and set up to automatically post to Hive
+* AWS updated to post to Shinray's bucket, which is tied to his Lambda and RDS
+
 Update 4/26
 
 Today the team added:

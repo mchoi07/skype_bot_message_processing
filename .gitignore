@@ -1,9 +1,14 @@
 __pycache__/
+frank_contributions/
+removed/
 credentials.py
 s3.txt
+chat_id.py
 data.tsv
+ooze.sh
 saved_time
 timestamp.py
-chat_id.py
 wxml_backup
-ooze.sh
+test_count.py
+test_output.txt
+test.py

@@ -3,9 +3,9 @@ import re
 
 def load_hive_data():
     skype_files = subprocess.check_output(["hdfs","dfs", "-find","skype_bot_data/*.tsv" ]).decode("utf-8").rstrip().split("\n")
-    # print(skype_files)
+    print(skype_files)
 
-    with open("saved_time", "r+") as f:
+    with open("/home/evan/skype_bot_message_processing/saved_time", "r+") as f:
             hive_last_update_time = float(f.read().rstrip())
             print(hive_last_update_time)
             files_since_last_update = list(filter(lambda x : float(re.findall("\d+\.\d+", x)[0]) > hive_last_update_time ,skype_files))
@@ -20,3 +20,5 @@ def load_hive_data():
                     f.truncate()
             else:
                     print("No new file detected. Database up to date\n")
+
+load_hive_data()
