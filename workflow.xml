@@ -2,9 +2,21 @@
 
 <workflow-app xmlns="uri:oozie:workflow:0.1" name="skype_bot_task">
 
-  <start to="batch-node" />
+  <start to="python-node" />
 
-    <action name="batch-node">
+    <action name="python-node">
+      <shell xmlns="uri:oozie:shell-action:0.1">
+        <job-tracker>${jobTracker}</job-tracker>
+        <name-node>${nameNode}</name-node>
+        <exec>/user/maria_dev/skype_bot/test.py</exec>
+        <file>/user/maria_dev/skype_bot/test.py</file>
+        <capture-output />
+      </shell>
+      <ok to="shell-node" />
+      <error to="fail" />
+    </action>
+
+    <action name="shell-node">
       <shell xmlns="uri:oozie:shell-action:0.1">
         <job-tracker>${jobTracker}</job-tracker>
         <name-node>${nameNode}</name-node>
