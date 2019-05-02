@@ -14,33 +14,9 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
-dag = DAG('skype_bot', default_args=default_args, schedule_interval=timedelta(days=1))
+dag = DAG('skype_bot_2', default_args=default_args, schedule_interval=timedelta(days=1))
 
-# t1, t2 and t3 are examples of tasks created by instantiating operators
 t1 = BashOperator(
     task_id='run_test',
-    bash_command='test.py',
+    bash_command='python ~/skype_bot_message_processing/hivebatch.py',
     dag=dag)
-
-t2 = BashOperator(
-    task_id='sleep',
-    bash_command='sleep 5',
-    retries=3,
-    dag=dag)
-
-# templated_command = """
-#     {% for i in range(5) %}
-#         echo "{{ ds }}"
-#         echo "{{ macros.ds_add(ds, 7)}}"
-#         echo "{{ params.my_param }}"
-#     {% endfor %}
-# """
-
-# t3 = BashOperator(
-#     task_id='templated',
-#     bash_command=templated_command,
-#     params={'my_param': 'Parameter I passed in'},
-#     dag=dag)
-
-t2.set_upstream(t1)
-# t3.set_upstream(t1)
